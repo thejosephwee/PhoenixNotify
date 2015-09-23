@@ -6,20 +6,67 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/css/material.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/css/ripples.css" />
-    <link rel="stylesheet" href="bower_components/metro-bootstrap/dist/css/metro-bootstrap.css"/>
-
+ 
     <link rel="stylesheet" href="styles/main.css">
 
 </head>
 <body ng-app="PhoenixNotifyApp">
 
-<div class="jumbotron">
-    <div ng-view=""></div>
+<div ng-view=""></div>
+    
+<div class="container-fluid" style="margin-top: 40px;">
+    <div class="row">
+         <div class="col-md-8">
+             <table class="table table-inverse ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Summary</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">OP-882</th>
+                        <td>Issue </td>
+                        <td><span class="label label-warning">Major</span>
+                        </td>
+                        <td>In Progress</td>
+                    </tr>
+                    <tr class="table-success" style="color:#000;background:#red!important;">
+                        <th scope="row"><s>OP-824</s>
+                        </th>
+                        <td><s>Production issue - establish user access level</s>
+                        </td>
+                        <td><s><span class="label label-danger">Critical</span></s>
+                        </td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">OP-833</th>
+                        <td>Fix typographical error "Open Practise" to Open Practice</td>
+                        <td><span class="label label-info">Enhancement</span>
+                        </td>
+                        <td>Not Started</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart1" width="400" height="400"></canvas>
+        </div>
+                                                                                                       
+        
+        
+        <canvas class="ans" width="197" height="197" data-chart="doughnut" data-value="[{ value: 330, color: '#1ca8dd', label: 'Recurring' }, { value: 30, color: '#1bc98e', label: 'New' }]" data-segment-stroke-color="#fff" style="width: 197px; height: 197px;">
+      </canvas>
+    </div>
 </div>
-
+    
+    
+    
 <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.js"></script>
 
@@ -28,13 +75,41 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-resource.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/js/material.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/js/ripples.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+    
+    
 <script>
     $(document).ready(function() {
-        $.material.init();
+         var data = [{
+
+        value: 10,
+        color: "#d9534f"
+    }, {
+        value: 0,
+        color: "#f0ad4e"
+    }, {
+        value: 50,
+        color: "#5bc0de"
+    }, {
+        value: 50,
+        color: "#FFF"
+    }
+
+    ]
+
+    var options = {
+        animation: false
+    };
+
+    //Get the context of the canvas element we want to select
+    var c = $('#myChart');
+    var ct = c.get(0).getContext('2d');
+    var ctx = document.getElementById("myChart").getContext("2d");
+    /*************************************************************************/
+    myNewChart = new Chart(ct).Doughnut(data, options);
     });
+
+    
 </script>
 
 <script src="scripts/app.js"></script>
